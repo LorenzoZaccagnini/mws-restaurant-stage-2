@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3397DB" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Restaurant Reviews</title>
+</head>
+<body>
+  <header>
+    <nav  tabindex="0">
+      <h1><a href="/">Restaurant Reviews</a></h1>
+    </nav>
+  </header>
+  <main id="main-content">
+    <div class="show-btn-container" aria-hidden="true" align="center">
+      <button id="showMapButton" onclick="showRestaurantsMap()" tabindex="-1">
+        Show Map
+      </button>
+    </div>
+    <section id="map-container" aria-hidden="true">
+      <div id="map" role="application" tabindex="-1"></div>
+    </section>
+    <section>
+      <div class="filter-options" id="filter-options">
+        <div align="center">
+          <select id="neighborhoods-select" aria-label="Filter cuisines" name="cuisines" onchange="updateRestaurants()">
+            <option value="all">All Neighborhoods</option>
+          </select>
+        </div>
+        <div align="center">
+          <select id="cuisines-select" aria-label="Filter cuisines" name="cuisines" onchange="updateRestaurants()">
+            <option value="all">All Cuisines</option>
+          </select>
+        </div>
+
+      </div>
+        <ul id="restaurants-list" role="listbox"></ul>
+    </section>
+  </main>
+
+<script type="text/javascript">
+// SHOW Map
+var mapHidden = true;
+
+
+var showRestaurantsMap = () => {
+  const gmap = document.getElementById('map');
+  const showMapButton = document.getElementById('showMapButton');
+
+  mapHidden = !mapHidden;
+  if (!mapHidden) {
+    console.log("show map");
+    gmap.style.display = "block"
+    showMapButton.innerHTML = "Hide Map"
+  } else {
+    console.log("hide map");
+    gmap.style.display = "none"
+    showMapButton.innerHTML = "Show Map"
+  }
+}
+</script>
+
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcrXCcFEVQUobhCEY_XcDuXvzo5sUk4xg&libraries=places&callback=initMap"></script>
+  <!-- LOAD BUNDE -->
+   <script type="application/javascript" charset="utf-8" src="bundle_js/main_bundle.js"></script>
+      <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
